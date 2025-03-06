@@ -58,7 +58,7 @@ public class ClienteDAO extends BaseDAO {
     }
 
     public void eliminar(int id) {
-        String sql = "delete from login where id_usuario=" + id;  
+        String sql = "delete from cliente where id_cliente=" + id;  
         try {
             con = conectar.getConnection(); 
             ps = con.prepareStatement(sql); 

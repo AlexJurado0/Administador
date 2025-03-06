@@ -6,7 +6,6 @@ package Controlador;
 
 import Modelo.Cliente;
 import Modelo.ClienteDAO;
-import Modelo.Login;
 import Vista.VistaCliente;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,69 +24,125 @@ public class ControladorCliente implements ActionListener {
     Cliente c = new Cliente();
     VistaCliente vista = new VistaCliente();
 
-    public ControladorCliente() {
+    public ControladorCliente(VistaCliente vc) {
+        
+        this.vista = vc;
+        this.vista.btnListarCliente.addActionListener(this);
+        this.vista.btnModificarCliente.addActionListener(this);
+        this.vista.btnOkCliente.addActionListener(this);
+        this.vista.btnEliminarCliente.addActionListener(this);
     }
     
     DefaultTableModel modelo=new DefaultTableModel();
     public void actionPerformed(ActionEvent e) {
+        
+        
+       if(e.getSource()==vista.btnListarCliente){
+            listar(vista.jTableCliente); 
+            limpiarTabla(); 
+            listar(vista.jTableCliente); 
+        }
+       
+        if (e.getSource()==vista.btnModificarCliente) {
+            int fila=vista.jTableCliente.getSelectedRow();  // Obtiene la fila seleccionada en la tabla
+           if(fila==-1){
+               JOptionPane.showConfirmDialog(vista, "Debe seleccionar una fila");// Muestra un mensaje si no se selecciona una fila
+           }else{
+                // Rellena los campos de texto con los datos de la fila seleccionada
+               int id_cliente=Integer.parseInt((String)vista.jTableCliente.getValueAt(fila, 0).toString());
+               String nombreCompleto=(String) vista.jTableCliente.getValueAt(fila, 1);
+               int edad=Integer.parseInt((String)vista.jTableCliente.getValueAt(fila, 2).toString());
+               String telefono=(String) vista.jTableCliente.getValueAt(fila, 3);
+               String domicilio=(String) vista.jTableCliente.getValueAt(fila, 4);
+               String correo=(String) vista.jTableCliente.getValueAt(fila, 5);
+               int id_administrador=Integer.parseInt((String)vista.jTableCliente.getValueAt(fila, 6).toString());
+               
+               vista.txtIdCliente.setText("" + id_cliente);
+               vista.txtNombreCompletoCliente.setText(nombreCompleto); 
+               vista.txtEdadCliente.setText("" +edad); 
+               vista.txtTelefonoCliente.setText(telefono);
+               vista.txtDomicilioCliente.setText(domicilio); 
+               vista.txtCorreCliente.setText(correo); 
+               vista.txtIdAdministadorCliente.setText("" + id_administrador);   
+           }
+            
+        }
+        if(e.getSource()==vista.btnOkCliente){
+            actualizar(); // Llama al método actualizar para guardar los cambios en la persona
+            limpiarTabla(); // Limpia la tabla
+            listar(vista.jTableCliente); // Vuelve a listar los datos actualizados en la tabla
+        }
+        
+        if (e.getSource() == vista.btnEliminarCliente) {
+            int fila = vista.jTableCliente.getSelectedRow(); // Obtiene la fila seleccionada en la tabla
+            if (fila == -1) {
+                JOptionPane.showConfirmDialog(vista, "Debe seleccionar un usuario"); // Muestra un mensaje si no se selecciona un usuario
+            } else {
+                // Elimina el usuario de la base de datos
+                int id = Integer.parseInt((String) vista.jTableCliente.getValueAt(fila, 0).toString());
+                dao.eliminar(id); // Llama al método eliminar del DAO para eliminar la persona
+                limpiarTabla(); // Limpia la tabla
+                listar(vista.jTableCliente); // Vuelve a listar los datos actualizados en la tabla
+            }
+           
+        }
+            
+        
     }
     
     public void listar(JTable tabla) {
-        modelo = (DefaultTableModel) tabla.getModel(); // Obtiene el modelo de la tabla
-        List<Cliente> lista = dao.listar(); // Llama al método listar del DAO para obtener la lista de personas
-        Object[] object = new Object[4]; // Crea un arreglo de objetos para almacenar los datos de una persona
-        for (int i = 0; i < lista.size(); i++) { // Itera sobre la lista de personas
-            // Agrega los datos de la persona a la tabla
-            object[0] = lista.get(i).getId_usuario();
-            object[1] = lista.get(i).getUsuario();
-            object[2] = lista.get(i).getContraseña();
-            object[3] = lista.get(i).getRol();
-            modelo.addRow(object); // Agrega la fila al modelo de la tabla
+        modelo = (DefaultTableModel) tabla.getModel();
+        List<Cliente> lista = dao.listar();
+        Object[] object = new Object[7]; 
+        for (int i = 0; i < lista.size(); i++) { 
+          
+            object[0] = lista.get(i).getId_cliente();
+            object[1] = lista.get(i).getNombreCompleto();
+            object[2] = lista.get(i).getEdad();
+            object[3] = lista.get(i).getTelefono();
+            object[4] = lista.get(i).getDomicilio();
+            object[5] = lista.get(i).getCorreo();
+            object[6] = lista.get(i).getId_administrador();
+            modelo.addRow(object);
         }
-        vista.tabla.setModel(modelo); // Establece el modelo actualizado en la vista
-    }
-    
-    // Método para agregar una nueva persona
-    public void agregar() {
-        String usuario = vista.txtUsuarioLogin.getText(); // Obtiene el nombre desde el campo de texto
-        String contraseña = vista.txtContraseñaLogin.getText(); // Obtiene el correo desde el campo de texto
-        String rolStr = vista.txtRolLogin.getText(); 
-        int rol = Integer.parseInt(rolStr); // Obtiene el teléfono desde el campo de texto
-        p.setUsuario(usuario); // Establece el nombre en el objeto persona
-        p.setContraseña(contraseña); // Establece el correo en el objeto persona
-        p.setRol(rol); // Establece el teléfono en el objeto persona
-        int r = dao.agregar(p); // Llama al método agregar del DAO para guardar la persona
-        if (r == 1) {
-            JOptionPane.showMessageDialog(vista, "Usuario agregado con Exito!"); // Muestra un mensaje de éxito
-        } else {
-            JOptionPane.showMessageDialog(vista, "Error al agregar usuario!"); // Muestra un mensaje de error
-        }
+        vista.jTableCliente.setModel(modelo); 
     }
     
     // Método para actualizar una persona
     public void actualizar() {
-        int id = Integer.parseInt(vista.txtIdLogin.getText()); // Obtiene el ID desde el campo de texto
-        String usuario = vista.txtUsuarioLogin.getText(); // Obtiene el nombre desde el campo de texto
-        String contraseña = vista.txtContraseñaLogin.getText(); // Obtiene el correo desde el campo de texto
-        String rolStr = vista.txtRolLogin.getText(); 
-        int rol = Integer.parseInt(rolStr); // Obtiene el teléfono desde el campo de texto
-        p.setId_usuario(id); // Establece el ID en el objeto persona
-        p.setUsuario(usuario); // Establece el nombre en el objeto persona
-        p.setContraseña(contraseña); // Establece el correo en el objeto persona
-        p.setRol(rol); // Establece el teléfono en el objeto persona
-        int r = dao.Actualizar(p); // Llama al método Actualizar del DAO para actualizar la persona
+        String id_clienteStr = vista.txtIdCliente.getText(); 
+        int id_cliente = Integer.parseInt(id_clienteStr); 
+        String nombreCompleto = vista.txtNombreCompletoCliente.getText();
+        String edadStr = vista.txtEdadCliente.getText(); 
+        int edad = Integer.parseInt(edadStr);
+        String telefono = vista.txtTelefonoCliente.getText();
+        String domicilio = vista.txtDomicilioCliente.getText();
+        String correo = vista.txtCorreCliente.getText();
+        String id_administradorStr = vista.txtIdAdministadorCliente.getText(); 
+        int id_administrador = Integer.parseInt(id_administradorStr);
+        
+         c.setId_cliente(id_cliente);
+        c.setNombreCompleto(nombreCompleto);
+        c.setEdad(edad);
+        c.setTelefono(telefono);
+        c.setDomicilio(domicilio);
+        c.setCorreo(correo);
+        c.setId_administrador(id_administrador);
+        
+        
+        int r = dao.Actualizar(c); 
         if (r == 1) {
-            JOptionPane.showConfirmDialog(vista, "El usuario ha sido actualizado con exito"); // Muestra un mensaje de éxito
+            JOptionPane.showConfirmDialog(vista, "El Cliente ha sido actualizado con exito"); 
         } else {
-            JOptionPane.showConfirmDialog(vista, "Error al actualizar el usuario"); // Muestra un mensaje de error
+            JOptionPane.showConfirmDialog(vista, "Error al actualizar el Cliente"); 
         }
     }
     
-    // Método para limpiar la tabla antes de mostrar los nuevos datos
+  
     void limpiarTabla() {
-        for (int i = 0; i < vista.tabla.getRowCount(); i++) {
-            modelo.removeRow(i); // Elimina las filas de la tabla
-            i = i - 1; // Ajusta el índice para no saltar filas
+        for (int i = 0; i < vista.jTableCliente.getRowCount(); i++) {
+            modelo.removeRow(i); 
+            i = i - 1; 
         }
     }
 }

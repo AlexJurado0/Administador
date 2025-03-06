@@ -10,6 +10,7 @@ public class ControladorPrincipal implements ActionListener{
          private VistaMenu vistaMenu;
          private ControladorLogin controladorLogin;
          private ControladorDatosPersonales controladorDatosPersonales;
+         private ControladorCliente ControladorCliente;
          
          private VistaLogin vistaLogin;  
          private VistaDatosPersonales vistaDatosPersonales;
@@ -26,6 +27,7 @@ public class ControladorPrincipal implements ActionListener{
         
         this.controladorLogin = new ControladorLogin(vistaLogin);
         this.controladorDatosPersonales = new ControladorDatosPersonales(vistaDatosPersonales);
+        this.ControladorCliente = new ControladorCliente(vistaCliente);
         
         
         this.vistaMenu.btnLogin.addActionListener(this);

@@ -65,7 +65,7 @@ public class ControladorLogin implements ActionListener{
                 vista.txtRolLogin.setText(telefono); // Establece el teléfono en el campo de texto
            }
         }
-         // Si se hace clic en el botón "OK"
+      
         if(e.getSource()==vista.tabla){
             actualizar(); // Llama al método actualizar para guardar los cambios en la persona
             limpiarTabla(); // Limpia la tabla

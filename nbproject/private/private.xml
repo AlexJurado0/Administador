@@ -3,23 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/coco/Documents/NetBeansProjects/JavaApplication3/src/Modelo/Login.java</file>
-            <file>file:/C:/Users/coco/Documents/NetBeansProjects/JavaApplication3/src/Controlador/ControladorCliente.java</file>
-            <file>file:/C:/Users/coco/Documents/NetBeansProjects/JavaApplication3/src/Modelo/AdministradorDAO.java</file>
-            <file>file:/C:/Users/coco/Documents/NetBeansProjects/JavaApplication3/src/Controlador/ControladorDatosPersonales.java</file>
-            <file>file:/C:/Users/coco/Documents/NetBeansProjects/JavaApplication3/src/Controlador/ControladorAdministrador.java</file>
-            <file>file:/C:/Users/coco/Documents/NetBeansProjects/JavaApplication3/src/Vista/VistaLogin.java</file>
-            <file>file:/C:/Users/coco/Documents/NetBeansProjects/JavaApplication3/src/Modelo/DatosPersonalesDao.java</file>
-            <file>file:/C:/Users/coco/Documents/NetBeansProjects/JavaApplication3/src/Controlador/ControladorLogin.java</file>
-            <file>file:/C:/Users/coco/Documents/NetBeansProjects/JavaApplication3/src/Modelo/LoginDAO.java</file>
-            <file>file:/C:/Users/coco/Documents/NetBeansProjects/JavaApplication3/src/Principal/Main.java</file>
-            <file>file:/C:/Users/coco/Documents/NetBeansProjects/JavaApplication3/src/Vista/VistaMenu.java</file>
-            <file>file:/C:/Users/coco/Documents/NetBeansProjects/JavaApplication3/src/Modelo/Conexion.java</file>
-            <file>file:/C:/Users/coco/Documents/NetBeansProjects/JavaApplication3/src/Controlador/ControladorPrincipal.java</file>
-            <file>file:/C:/Users/coco/Documents/NetBeansProjects/JavaApplication3/src/Modelo/DatosPersonales.java</file>
-            <file>file:/C:/Users/coco/Documents/NetBeansProjects/JavaApplication3/src/Vista/VistaDatosPersonales.java</file>
-            <file>file:/C:/Users/coco/Documents/NetBeansProjects/JavaApplication3/src/Modelo/BaseDAO.java</file>
-            <file>file:/C:/Users/coco/Documents/NetBeansProjects/JavaApplication3/src/Modelo/Administrador.java</file>
+            <file>file:/C:/Users/coco/Documents/NetBeansProjects/AdministradorMVC/src/Vista/VistaDatosPersonales.java</file>
+            <file>file:/C:/Users/coco/Documents/NetBeansProjects/AdministradorMVC/src/Vista/VistaLogin.java</file>
+            <file>file:/C:/Users/coco/Documents/NetBeansProjects/AdministradorMVC/src/Controlador/ControladorLogin.java</file>
+            <file>file:/C:/Users/coco/Documents/NetBeansProjects/AdministradorMVC/src/Modelo/BaseDAO.java</file>
+            <file>file:/C:/Users/coco/Documents/NetBeansProjects/AdministradorMVC/src/Controlador/ControladorAdministrador.java</file>
+            <file>file:/C:/Users/coco/Documents/NetBeansProjects/AdministradorMVC/src/Modelo/Cliente.java</file>
+            <file>file:/C:/Users/coco/Documents/NetBeansProjects/AdministradorMVC/src/Controlador/ControladorCliente.java</file>
+            <file>file:/C:/Users/coco/Documents/NetBeansProjects/AdministradorMVC/src/Modelo/ClienteDAO.java</file>
+            <file>file:/C:/Users/coco/Documents/NetBeansProjects/AdministradorMVC/src/Vista/VistaAdministrador.java</file>
+            <file>file:/C:/Users/coco/Documents/NetBeansProjects/AdministradorMVC/src/Vista/VistaCliente.java</file>
+            <file>file:/C:/Users/coco/Documents/NetBeansProjects/AdministradorMVC/src/Controlador/ControladorPrincipal.java</file>
+            <file>file:/C:/Users/coco/Documents/NetBeansProjects/AdministradorMVC/src/Vista/VistaMenu.java</file>
         </group>
     </open-files>
 </project-private>
