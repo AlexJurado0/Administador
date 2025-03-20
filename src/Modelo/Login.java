@@ -42,10 +42,4 @@ public class Login {
     public void setRol(int rol) {
         this.rol = rol;
     }
-
-    
-
-    
-    
-    
 }

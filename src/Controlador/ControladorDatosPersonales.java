@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controlador;
 
 import Modelo.*;
@@ -9,55 +5,53 @@ import Vista.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author coco
- */
 public class ControladorDatosPersonales implements ActionListener {
 
-    
+
     DatosPersonalesDao datosPersonalesDAO = new DatosPersonalesDao();
+
     DatosPersonales p = new DatosPersonales();
+
     VistaDatosPersonales VistaDatosPersonales = new VistaDatosPersonales();
-    DefaultTableModel modelo = new DefaultTableModel();
-    
-    
-    
-    
-    
-    public ControladorDatosPersonales( VistaDatosPersonales dp) {
+
+    public ControladorDatosPersonales(VistaDatosPersonales dp) {
         this.VistaDatosPersonales = dp;
         
         this.VistaDatosPersonales.btnGurdarDatosPersonales.addActionListener(this);
     }
+
+   
     public void actionPerformed(ActionEvent e) {
     
+
         if (e.getSource() == VistaDatosPersonales.btnGurdarDatosPersonales) {
-            agregar();
+            agregar();  // Llama al método para agregar los datos a la base de datos
         }
     }
     
-    public void agregar(){
+
+    public void agregar() {
+        // Obtener los datos ingresados por el usuario desde los campos de texto
         String nombreCompleto = VistaDatosPersonales.txtNombreCompletoLogin.getText();
         int edad = Integer.parseInt(VistaDatosPersonales.txtEdadLogin.getText());
         String telefono = VistaDatosPersonales.txtTelefonoLogin.getText();
         String domicilio = VistaDatosPersonales.txtDomicilioLogin.getText();
         String correo = VistaDatosPersonales.txtCorreoLogin.getText();
         
+        // Establecer los valores en el objeto DatosPersonales
         p.setNombreCompleto(nombreCompleto);
         p.setEdad(edad);
         p.setTelefono(telefono);
         p.setDomicilio(domicilio);
         p.setCorreo(correo);
 
+        // Llamar al método del DAO para agregar los datos a la base de datos
         int r = datosPersonalesDAO.agregar(p);
         if (r == 1) {
-            JOptionPane.showMessageDialog(VistaDatosPersonales, "El usuario ha sido actualizado con éxito");
+            JOptionPane.showMessageDialog(VistaDatosPersonales, "El usuario ha sido creado con exito");
         } else {
-            JOptionPane.showMessageDialog(VistaDatosPersonales, "Error al actualizar el usuario");
+            JOptionPane.showMessageDialog(VistaDatosPersonales, "Error al crear el usuario");
         }
-        
-}
+    }
 }

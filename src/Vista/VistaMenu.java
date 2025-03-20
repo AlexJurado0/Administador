@@ -40,7 +40,6 @@ public class VistaMenu extends javax.swing.JFrame {
         });
 
         btnCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCliente.setForeground(new java.awt.Color(51, 51, 51));
         btnCliente.setText("Gestionar Cliente");
         btnCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
